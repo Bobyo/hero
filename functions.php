@@ -42,6 +42,9 @@ require_once( 'library/enqueue-scripts.php' );
 /** Add theme support */
 require_once( 'library/theme-support.php' );
 
+/** Add theme Logo Support */
+require_once( 'library/theme-customizer.php' );
+
 /** Add Nav Options to Customer */
 require_once( 'library/custom-nav.php' );
 
