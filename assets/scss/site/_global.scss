@@ -45,6 +45,19 @@ figcaption {
    max-width: initial;
 }
 
+.valign-middle {
+    display: table;
+
+    > .columns {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    > .columns, > [class*="column"] + [class*="column"]:last-child {
+        float: none;
+    }
+}
+
 blockquote.alignleft,
 img.alignleft {
 	margin: rem-calc(7) rem-calc(24) rem-calc(7) 0;
