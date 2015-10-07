@@ -24,6 +24,102 @@ function hero_theme_customizer( $wp_customize ) {
 }
 add_action( 'customize_register', 'hero_theme_customizer' );
 
+// function hero_theme_bgColor ( $wp_customize ) {
+//     $wp_customize->add_section( 'hero_bgColor', array(
+//         'title'         => __( 'Hero overlay Background', 'hero' ),
+//         'priority'      => 40,
+//         'description'   => 'Set the background color for the hero that will act like a overlay',
+//     ) );
+
+//     $wp_customize->add_setting( 'hero_bg_color', array(
+//         'default' => '#999999'
+//         ) );
+
+//     $wp_customize->add_control( new WP_Customize_Color_Control ( $wp_customize, 'hero_bg_color', array(
+//         'label'    => __( 'Color', 'hero' ),
+//         'sections' => 'hero_bgColor',
+//         'settings' => 'hero_bg_color',
+//         ) ) );
+
+// }
+
+function hero_register_theme_customizer( $wp_customize ) {
+
+    $wp_customize->add_setting(
+        'hero_head_overlayBg',
+        array(
+            'default'     => '#000000'
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'link_color',
+            array(
+                'label'      => __( 'Head overlay color', 'tcx' ),
+                'section'    => 'colors',
+                'settings'   => 'hero_head_overlayBg'
+            )
+        )
+    );
+
+}
+add_action( 'customize_register', 'hero_register_theme_customizer' );
+
+function header_BgColor() {
+
+    function hex2rgba($color, $opacity = false) {
+
+        $default = 'rgb(0,0,0)';
+
+        //Return default if no color provided
+        if(empty($color))
+        return $default;
+
+        //Sanitize $color if "#" is provided
+        if ($color[0] == '#' ) {
+            $color = substr( $color, 1 );
+        }
+
+        //Check if color has 6 or 3 characters and get values
+        if (strlen($color) == 6) {
+            $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+        } elseif ( strlen( $color ) == 3 ) {
+            $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+        } else {
+            return $default;
+        }
+
+        //Convert hexadec to rgb
+        $rgb =  array_map('hexdec', $hex);
+
+        //Check if opacity is set(rgba or rgb)
+        if($opacity){
+            if(abs($opacity) > 1)
+            $opacity = 1.0;
+            $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+        } else {
+            $output = 'rgb('.implode(",",$rgb).')';
+        }
+
+        //Return rgb(a) color string
+        return $output;
+    }
+
+    $color = get_theme_mod( 'hero_head_overlayBg' );
+    $rgba = hex2rgba($color, 0.3);
+
+    ?>
+    <style type="text/css">
+        .hero-bg {
+            background-color: <?php echo $rgba; ?>;
+        }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'header_BgColor' );
+
 function twentythirteen_custom_header_setup() {
     $args = array(
         // Text color and image (empty to use none).
@@ -45,20 +141,20 @@ function twentythirteen_custom_header_setup() {
      * %s is a placeholder for the theme template directory URI.
      */
     register_default_headers( array(
-        'circle' => array(
+        'stars' => array(
             'url'           => '%s/assets/images/headers/stars.jpeg',
-            'thumbnail_url' => '%s/assets/images/headers/circle-thumbnail.png',
-            'description'   => _x( 'Circle', 'header image description', 'twentythirteen' )
+            'thumbnail_url' => '%s/assets/images/headers/stars-thumbnail.jpg',
+            'description'   => _x( 'Stars', 'header image description', 'twentythirteen' )
         ),
-        'diamond' => array(
+        'woods' => array(
             'url'           => '%s/assets/images/headers/woods.jpeg',
-            'thumbnail_url' => '%s/assets/images/headers/diamond-thumbnail.png',
-            'description'   => _x( 'Diamond', 'header image description', 'twentythirteen' )
+            'thumbnail_url' => '%s/assets/images/headers/woods-thumbnail.jpg',
+            'description'   => _x( 'Woods', 'header image description', 'twentythirteen' )
         ),
-        'star' => array(
+        'gazing' => array(
             'url'           => '%s/assets/images/headers/gazing.jpeg',
-            'thumbnail_url' => '%s/assets/images/headers/star-thumbnail.png',
-            'description'   => _x( 'Star', 'header image description', 'twentythirteen' )
+            'thumbnail_url' => '%s/assets/images/headers/gazing-thumbnail.jpg',
+            'description'   => _x( 'Gazing', 'header image description', 'twentythirteen' )
         ),
     ) );
 }
@@ -80,8 +176,9 @@ function twentythirteen_header_style() {
     ?>
         #front-hero {
             background: url(<?php header_image(); ?>) no-repeat scroll top;
-            background-size: 1600px auto;
+            background-size: cover;
         }
+
     <?php
         endif;
 

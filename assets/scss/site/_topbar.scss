@@ -1,7 +1,10 @@
 // Add some whitespace between top bar and content
 .top-bar-container, .tab-bar {
 	margin-bottom: rem-calc(32);
-
+    position:absolute;
+    left:0;
+    top:0;
+    z-index: 100;
 	@media only screen and (max-width: ($topbar-breakpoint)) {
 		.top-bar-left {
 			li.name {

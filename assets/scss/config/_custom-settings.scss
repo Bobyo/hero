@@ -3,8 +3,11 @@
 	This file will only contain uncommented settings that are actually used in the theme.
 */
 
+@import url(https://fonts.googleapis.com/css?family=Raleway:500,700|Source+Sans+Pro);
+
 // We use these to define default font stacks
-$font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-sans-serif:'Source Sans Pro', Arial, sans-serif;
+$font-family-serif-header:'Raleway', Arial, sans-serif;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
@@ -33,6 +36,13 @@ $oil         : #333333;
 $jet         : #222222;
 $black       : #000000;
 
+// Hero theme specific colors
+$hero-base          : #225378;
+$hero-base-lighter  : #1595A3;
+$hero-base-lightest : #ACF0F2;
+$hero-light         : #F2FFE3;
+$hero-accent        : #EB7F00;
+
 // We use these as default colors throughout
 $primary-color: #008CBA;
 $secondary-color: #e7e7e7;
@@ -53,27 +63,33 @@ $header-text-rendering: optimizeLegibility;
 // Set the link colors and styles for top-level nav
 $topbar-link-weight: bold;
 $topbar-link-color: $white;
-$topbar-link-color-hover: $white;
+$topbar-link-color-hover: $hero-base-lighter;
 $topbar-link-color-active: $white;
 $topbar-link-color-active-hover: $white;
 $topbar-bg-color: transparent;
 $topbar-bg: $topbar-bg-color;
+$topbar-link-color-active: $hero-accent;
+$topbar-link-color-active-hover: $hero-base-lighter;
+$topbar-link-bg-active-hover:$topbar-bg;
 
 $topbar-link-bg: $topbar-bg;
-$topbar-link-bg-hover: $jet;
-$topbar-link-bg-color-hover: $jet;
-$topbar-link-bg-active: transparent;
+$topbar-link-bg-hover: $topbar-bg;
+$topbar-link-bg-color-hover: $topbar-bg;
+$topbar-link-bg-active: $topbar-bg;
 //$topbar-link-bg-active-hover: scale-color($jet, $lightness: -14%);
 
 $topbar-dropdown-bg: transparent;
 $topbar-dropdown-link-color: $white;
 $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
 $topbar-dropdown-link-bg: $oil;
-$topbar-dropdown-link-bg-hover: $jet;
+$topbar-dropdown-link-bg-hover: transparent;
 $topbar-dropdown-link-weight: $font-weight-normal;
 $topbar-dropdown-toggle-size: 5px;
 $topbar-dropdown-toggle-color: $white;
 $topbar-dropdown-toggle-alpha: .4;
+
+$header-font-family: $font-family-serif-header;
+$header-font-weight: 700;
 
 // Media query breakpoints
 $small-breakpoint:  em-calc(640);

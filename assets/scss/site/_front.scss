@@ -1,21 +1,17 @@
 #front-hero {
 
-	.marketing {
-		@include grid-row();
-	}
-
-	@media #{$small-up} {
-		background: url("../images/demo/marquee-stars.svg") repeat scroll 0 0 #074E68;
-		padding: rem-calc(65%) 0;
-		margin: - rem-calc(32) 0 rem-calc(32);
-		position: relative;
-		text-align: left;
-	}
+    .hero-bg {
+        height: 100%;
+    }
 
 	@media #{$medium-up} {
-		height: rem-calc(400);
+		height: rem-calc(500);
 		margin: - rem-calc(32) 0 rem-calc(72);
 	}
+
+    .setting-height {
+        height:rem-calc(500);
+    }
 
 	#watch {
 		section {
@@ -70,11 +66,11 @@
 		}
 
 		@media screen and (min-width: 871px) {
-			@include grid-column(5);
+			@include grid-column(12);
 		}
 	}
 
-		h1 { font-weight: 500; }
+		h1 { font-weight: 700; font-family:$font-family-serif-header;color:$white; text-transform:capitalize;}
 
 		h1 a, h4 { color: #fff; }
 
