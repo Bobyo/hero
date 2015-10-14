@@ -19,9 +19,12 @@ get_header(); ?>
 <header id="front-hero" role="banner">
     <div class="marketing hero-bg gray">
             <div class="row valign-middle setting-height">
-                <div class="columns">
+                <div class="columns text-center">
+                    <div class="hero-thumb">
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/soffes/73.jpg" alt="@soffes">
+                    </div>
                     <div class="tagline">
-                        <h1>Welcome to my blog</h1>
+                        <h1><?php echo get_theme_mod( 'hero_tagline_main' ) ?></h1>
                         <h4 class="subheader"><?php bloginfo( 'description' ); ?></h4>
                     </div>
 

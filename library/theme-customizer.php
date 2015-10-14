@@ -24,6 +24,26 @@ function hero_theme_customizer( $wp_customize ) {
 }
 add_action( 'customize_register', 'hero_theme_customizer' );
 
+function hero_theme_maintitle( $wp_customize ) {
+
+    $wp_customize->add_setting( 'hero_tagline_main' );
+
+    $wp_customize->add_control(
+        new WP_Customize_Control(
+            $wp_customize,
+            'hero_tagline_main',
+            array(
+                'label'          => __( 'Hero title', 'hero' ),
+                'default'        => __( 'This is the default header hero title', 'hero' ),
+                'section'        => 'title_tagline',
+                'settings'       => 'hero_tagline_main',
+                'type'           => 'text',
+                )
+            )
+     );
+}
+add_action( 'customize_register', 'hero_theme_maintitle' );
+
 // function hero_theme_bgColor ( $wp_customize ) {
 //     $wp_customize->add_section( 'hero_bgColor', array(
 //         'title'         => __( 'Hero overlay Background', 'hero' ),
@@ -211,7 +231,4 @@ function twentythirteen_header_style() {
     </style>
     <?php
 }
-
 ?>
-
-
