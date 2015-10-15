@@ -7,6 +7,20 @@
  * @since FoundationPress 1.0.0
  */
 
+/**
+* Returns the options array for Hero
+* @since Hero 1.1.0
+*/
+function hero_options($name, $default = false) {
+    $options = ( get_option( 'hero_options' ) ) ? get_option( 'hero_options' ) : null;
+    // return the option if it exists
+    if ( isset( $options[ $name ] ) ) {
+        return apply_filters( 'hero_options_$name', $options[ $name ] );
+    }
+    // return default if nothing else
+    return apply_filters( 'hero_$name', $default );
+}
+
 function hero_theme_customizer( $wp_customize ) {
     $wp_customize->add_section( 'hero_logo_section' , array(
         'title'       => __( 'Logo', 'hero' ),
@@ -43,6 +57,77 @@ function hero_theme_maintitle( $wp_customize ) {
      );
 }
 add_action( 'customize_register', 'hero_theme_maintitle' );
+
+function hero_theme_social( $wp_customize ) {
+
+    $wp_customize->add_section( 'hero_social_section' , array(
+        'title'       => __( 'Social', 'hero' ),
+        'priority'    => 30,
+        'description' => 'Set up your social accounts to display them in the hero area of the site.',
+        ) );
+
+    $wp_customize->add_setting('hero_options[hide_social]', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+        'default'    => '0', # Default un-checked
+        ));
+
+    $wp_customize->add_control('hero_options[hide_social]', array(
+        'settings' => 'hero_options[hide_social]',
+        'label'    => __('Hide the social links in the hero area', 'narga'),
+        'section'  => 'hero_social_section',
+        'type'     => 'checkbox', # Type of control: checkbox
+    ));
+
+
+    # Add text input form to change custom text
+    $wp_customize->add_setting('hero_options[twitter]', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+        'default'    => 'your-username', # Default custom text
+    ));
+
+    $wp_customize->add_control('hero_options[twitter]', array(
+        'label' => 'Twitter ID', # Label of text form
+        'section' => 'hero_social_section', # Layout Section
+        'type' => 'text', # Type of control: text input
+        ));
+
+    # Add text input form to change custom text
+    $wp_customize->add_setting('hero_options[facebook]', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+        'default'    => 'your-username', # Default custom text
+    ));
+
+    $wp_customize->add_control('hero_options[facebook]', array(
+        'label' => 'Facebook ID', # Label of text form
+        'section' => 'hero_social_section', # Layout Section
+        'type' => 'text', # Type of control: text input
+        ));
+
+
+}
+add_action( 'customize_register', 'hero_theme_social' );
+
+
+function hero_theme_hidesidebar( $wp_customize ) {
+
+    $wp_customize->add_setting('hero_options[hero_hide_sidebar]', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'option',
+        'default'       => '0', # Default checked
+    ));
+
+    $wp_customize->add_control('hero_options[hero_hide_sidebar]', array(
+        'settings' => 'hero_options[hero_hide_sidebar]',
+        'label'    => __('Hide the sidebar', 'hero'),
+        'section'  => 'title_tagline', # Layout Section
+        'type'     => 'checkbox', # Type of control: checkbox
+    ));
+
+}
+add_action( 'customize_register', 'hero_theme_hidesidebar' );
 
 // function hero_theme_bgColor ( $wp_customize ) {
 //     $wp_customize->add_section( 'hero_bgColor', array(

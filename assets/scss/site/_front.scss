@@ -29,7 +29,7 @@
 		}
 
 		a {
-			color: #B4C9D1;
+			color: $hero-light;
 			cursor: pointer;
 			font-weight: 400;
 			margin-right: rem-calc(20);
@@ -39,14 +39,14 @@
 			color: #fff;
 		}
 
-		#stargazers {
+		#facebook {
 			:before {
-				content: "\f09b";
+				content: "\f09a";
 				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
 				text-decoration: inherit;
-				color: #B4C9D1;
+				color: $hero-light;
 				margin-right: rem-calc(8);
 			}
 		}
@@ -58,7 +58,7 @@
 				font-style: normal;
 				font-weight: normal;
 				text-decoration: inherit;
-				color: #B4C9D1;
+				color: $hero-light;
 				margin-right: rem-calc(8);
 			}
 		}

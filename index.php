@@ -27,15 +27,10 @@ get_header(); ?>
                         <h1><?php echo get_theme_mod( 'hero_tagline_main' ) ?></h1>
                         <h4 class="subheader"><?php bloginfo( 'description' ); ?></h4>
                     </div>
-
-                    <div id="watch" class="small-12 columns">
-                        <section id="stargazers">
-                            <a href="https://github.com/olefredrik/foundationpress">1.5k stargazers</a>
-                        </section>
-                        <section id="twitter">
-                            <a href="https://twitter.com/olefredrik">@olefredrik</a>
-                        </section>
-                    </div>
+                    <?php if ( hero_options( 'hide_social' ) == '0' ) :
+                    echo ' <div id="watch" class="small-12 columns"><section id="facebook"><a href="https://facebook.com/' .hero_options( 'facebook' ). '">' .hero_options( 'facebook' ). '</a></section>
+<section id="twitter"><a href="https://twitter.com/' .hero_options( 'twitter' ). '">' .hero_options( 'twitter' ). '</a></section></div> ';
+                    endif; ?>
                 </div>
             </div>
     </div>
@@ -72,6 +67,8 @@ get_header(); ?>
 	<?php do_action( 'foundationpress_after_content' ); ?>
 
 	</div>
-	<?php get_sidebar(); ?>
+    <?php if(hero_options('hero_hide_sidebar') == '0') :
+	   echo get_sidebar();
+    endif ?>
 </div>
 <?php get_footer(); ?>
