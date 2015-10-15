@@ -2,12 +2,11 @@
 	My custom settings. These variables are copied from _settings.css
 	This file will only contain uncommented settings that are actually used in the theme.
 */
-
-@import url(https://fonts.googleapis.com/css?family=Raleway:500,700|Source+Sans+Pro);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400|Source+Sans+Pro);
 
 // We use these to define default font stacks
 $font-family-sans-serif:'Source Sans Pro', Arial, sans-serif;
-$font-family-serif-header:'Raleway', Arial, sans-serif;
+$font-family-serif-header:'Oswald', Arial, sans-serif;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
@@ -44,7 +43,7 @@ $hero-light         : #F2FFE3;
 $hero-accent        : #EB7F00;
 
 // We use these as default colors throughout
-$primary-color: #008CBA;
+$primary-color: $hero-base-lighter;
 $secondary-color: #e7e7e7;
 $alert-color: #f04124;
 $success-color: #43AC6A;
@@ -76,7 +75,6 @@ $topbar-link-bg: $topbar-bg;
 $topbar-link-bg-hover: $topbar-bg;
 $topbar-link-bg-color-hover: $topbar-bg;
 $topbar-link-bg-active: $topbar-bg;
-//$topbar-link-bg-active-hover: scale-color($jet, $lightness: -14%);
 
 $topbar-dropdown-bg: transparent;
 $topbar-dropdown-link-color: $white;
@@ -90,6 +88,11 @@ $topbar-dropdown-toggle-alpha: .4;
 
 $header-font-family: $font-family-serif-header;
 $header-font-weight: 700;
+
+// Paragraphs
+
+$paragraph-font-size: rem-calc(18);
+$paragraph-line-height: 1.8 !default;
 
 // Media query breakpoints
 $small-breakpoint:  em-calc(640);
