@@ -5,6 +5,7 @@
     left:0;
     top:0;
     z-index: 100;
+    background-color: rgba($hero-base, 0.4);
 	@media only screen and (max-width: ($topbar-breakpoint)) {
 		.top-bar-left {
 			li.name {

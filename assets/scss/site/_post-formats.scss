@@ -1,0 +1,11 @@
+.format-video {
+    margin: 0 0 rem-calc(20);
+    h2 {
+        margin-top: rem-calc(20);
+    }
+    .content-body {
+        iframe {
+            display: none;
+        }
+    }
+}

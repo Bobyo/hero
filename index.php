@@ -45,6 +45,12 @@ get_header(); ?>
 		<?php do_action( 'foundationpress_before_content' ); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
+            <?php if ( has_post_format( 'image' )) {
+                if ( has_post_thumbnail() ) {
+                    the_post_thumbnail();
+                }
+        } ?>
+
 			<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; ?>
 

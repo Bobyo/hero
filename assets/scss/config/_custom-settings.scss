@@ -2,11 +2,11 @@
 	My custom settings. These variables are copied from _settings.css
 	This file will only contain uncommented settings that are actually used in the theme.
 */
-@import url(https://fonts.googleapis.com/css?family=Oswald:400|Source+Sans+Pro);
+@import url(https://fonts.googleapis.com/css?family=Signika:500|Source+Sans+Pro);
 
 // We use these to define default font stacks
 $font-family-sans-serif:'Source Sans Pro', Arial, sans-serif;
-$font-family-serif-header:'Oswald', Arial, sans-serif;
+$font-family-serif-header:'Signika', Arial, sans-serif;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
@@ -36,23 +36,23 @@ $jet         : #222222;
 $black       : #000000;
 
 // Hero theme specific colors
-$hero-base          : #225378;
-$hero-base-lighter  : #1595A3;
-$hero-base-lightest : #ACF0F2;
-$hero-light         : #F2FFE3;
-$hero-accent        : #EB7F00;
+$hero-base          : #2C343B;
+$hero-base-lighter  : #52616D;
+$hero-base-lightest : #E5E1D1;
+$hero-light         : #FFFFFF;
+$hero-accent        : #C44741;
 
 // We use these as default colors throughout
 $primary-color: $hero-base-lighter;
 $secondary-color: #e7e7e7;
-$alert-color: #f04124;
+$alert-color: $hero-accent;
 $success-color: #43AC6A;
-$warning-color: #f08a24;
-$info-color: #a0d3e8;
+$warning-color: $hero-accent;
+$info-color: $hero-base-lighter;
 
 // We use these to control various global styles
 $body-bg: $white;
-$body-font-color: $jet;
+$body-font-color: $hero-base;
 $body-font-family: $font-family-sans-serif;
 $body-font-weight: $font-weight-normal;
 $body-font-style: normal;
