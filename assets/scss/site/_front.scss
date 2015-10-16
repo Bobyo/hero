@@ -24,19 +24,16 @@
     }
 
 	#watch {
+        padding:0;
 		section {
 			display: inline;
 		}
 
 		a {
-			color: $hero-light;
+			color: $hero-base-lightest;
 			cursor: pointer;
 			font-weight: 400;
 			margin-right: rem-calc(20);
-		}
-
-		a:hover {
-			color: #fff;
 		}
 
 		#facebook {
@@ -46,7 +43,7 @@
 				font-style: normal;
 				font-weight: normal;
 				text-decoration: inherit;
-				color: $hero-light;
+				color: $hero-base-lightest;
 				margin-right: rem-calc(8);
 			}
 		}
@@ -58,29 +55,15 @@
 				font-style: normal;
 				font-weight: normal;
 				text-decoration: inherit;
-				color: $hero-light;
+				color: $hero-base-lightest;
 				margin-right: rem-calc(8);
 			}
 		}
 
 	}
 
-	.tagline {
 
-		@media screen and (min-width: 320px) and (max-width: 640px) {
-			@include grid-column(12);
-		}
-
-		@media screen and (min-width:641px) and (max-width: 870px) {
-			@include grid-column(9);
-		}
-
-		@media screen and (min-width: 871px) {
-			@include grid-column(12);
-		}
-	}
-
-		h1 { font-weight: 700; font-family:$font-family-serif-header;color:$white; text-transform:capitalize;}
+		h1 { font-weight: 700; font-family:$font-family-serif-header;color:$white; text-transform:capitalize;margin:rem-calc(20) 0;}
 
 		h1 a, h4 { color: #fff; }
 
@@ -93,6 +76,12 @@
 			top:rem-calc(21);
 		}
 
-		.download { margin-top: rem-calc(20); }
+		.download { margin-top: rem-calc(30); }
 
 	}
+
+.post {
+    h2 {
+        margin: rem-calc(20) 0;
+    }
+}
