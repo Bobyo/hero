@@ -81,7 +81,116 @@
 	}
 
 .post {
+    $post-header-bg:lighten($oil, 10%);
+    $meta-line-height:1.8;
+    %back-slash {
+        &:after {
+            content: "/";
+            position:absolute;
+            right:0;
+            top:10%;
+            color: #616161;
+            font-size: rem-calc(14);
+            font-weight: 700;
+            line-height:1.8;
+        }
+    }
+    header {
+        background-color:$post-header-bg;
+        padding:rem-calc(15);
+    }
+    .header__container {
+        &--addborder {
+            border:1px solid lighten($post-header-bg, 15%);
+        }
+        &--meta {
+            padding:rem-calc(10) 0;
+        }
+        &--author {
+            line-height: $meta-line-height;
+            position:relative;
+            img {
+                border-radius:50%;
+            }
+            .name {
+                padding-left:rem-calc(5);
+                font-size: rem-calc(12);
+                a {
+                    color:darken($white, 10%);
+                    font-weight: 700;
+                    @include single-transition;
+                    &:hover {
+                        color:$hero-accent;
+                    }
+                }
+            }
+            @extend %back-slash;
+
+        }
+        &--time {
+            line-height: 2.5;
+            color:darken($white, 10%);
+            font-size: rem-calc(12);
+            font-weight:700;
+            @extend %back-slash;
+        }
+        &--comments {
+            line-height: $meta-line-height;
+            a {
+                color:darken($white, 10%);
+                font-size:rem-calc(12);
+                font-weight:700;
+                @include single-transition;
+                &:hover {
+                    color:$hero-accent;
+                }
+            }
+        }
+    }
     h2 {
         margin: rem-calc(20) 0;
+        font-size: rem-calc(18);
+        text-align: center;
+        a {
+            color: $white;
+            @include single-transition;
+            &:hover {
+                color:$hero-accent;
+            }
+        }
+    }
+    .category-list {
+        a {
+            background-color:$hero-accent;
+            display: inline-block;
+            padding:rem-calc(5) 0;
+            text-transform: uppercase;
+            font-size:rem-calc(12);
+            font-weight: 700;
+            color:$white;
+            &:before {
+                content: '';
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-left: 10px solid $post-header-bg;
+                border-bottom: 10px solid transparent;
+                margin: 0 10px 0 0;
+            }
+            &:after {
+                content:'';
+                width: 0;
+                height: 0;
+                margin: 0 0 0 10px;
+                border-top: 10px solid transparent;
+                border-right: 10px solid $post-header-bg;
+                border-bottom: 10px solid transparent;
+            }
+        }
+        text-align:center;
+        margin-top: rem-calc(10);
+    }
+    .entry-content {
+        margin-top:rem-calc(20);
     }
 }
