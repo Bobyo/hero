@@ -27,6 +27,9 @@ require_once( 'library/navigation.php' );
 /** Add desktop menu walker */
 require_once( 'library/menu-walker.php' );
 
+/** Add post social */
+require_once( 'library/social.php' );
+
 /** Add off-canvas menu walker */
 require_once( 'library/offcanvas-walker.php' );
 

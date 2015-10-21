@@ -192,5 +192,51 @@
     }
     .entry-content {
         margin-top:rem-calc(20);
+        @include clearfix;
+    }
+
+    // More link
+    .more-link {
+        padding:rem-calc(10);
+        background-color:$hero-accent;
+        color: $white;
+        font-size: rem-calc(12);
+        font-weight: 700;
+        float:left;
+        @include single-transition;
+        &:hover {
+            background-color:darken($hero-accent, 20%);
+        }
+    }
+
+    // Social icons on the post footer
+    .social {
+        @include clearfix;
+        float:right;
+        a {
+            color:$hero-accent;
+            border:1px solid $hero-accent;
+            border-radius:50%;
+            width: 25px;
+            height: 25px;
+            display: block;
+            text-align: center;
+            float: left;
+            margin-right: 5px;
+            @include single-transition;
+            &:hover {
+                color:darken($hero-accent, 20%);
+            }
+        }
+        i {
+            font-size:rem-calc(15);
+        }
+    }
+
+    // Video Post
+    &.format-video {
+        iframe {
+            margin-bottom:rem-calc(-6);
+        }
     }
 }

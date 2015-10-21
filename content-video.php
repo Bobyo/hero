@@ -27,5 +27,11 @@
             </div>
         </div>
     </header>
-    <section class="content-body"><?php the_content('Continue reading...'); ?></section>
+    <div class="entry-content content-body">
+        <?php the_content( __( 'Continue reading...', 'foundationpress' ) ); ?>
+    </div>
+    <footer>
+        <?php $tag = get_the_tags(); if ( $tag ) { ?><p><?php the_tags(); ?></p><?php } ?>
+    </footer>
+    <hr />
 </article>

@@ -48,6 +48,7 @@ get_header(); ?>
             <?php if ( has_post_format( 'image' )) {
                 if ( has_post_thumbnail() ) {
                     the_post_thumbnail();
+                    echo '<a class="hide playbutton" href="' . esc_url( get_permalink() ) . '"><i class="fa fa-play "></i></a>';
                 }
         } ?>
 
