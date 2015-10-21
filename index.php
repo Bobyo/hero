@@ -21,7 +21,11 @@ get_header(); ?>
             <div class="row valign-middle setting-height">
                 <div class="columns text-center">
                     <div class="hero-thumb">
-                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/soffes/73.jpg" alt="@soffes">
+                        <?php if ( get_theme_mod( 'hero_admin_avatar' ) ) : ?>
+                            <div class='author-avatar'>
+                                <img src='<?php echo esc_url( get_theme_mod( 'hero_admin_avatar' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="tagline">
                         <h1><?php echo get_theme_mod( 'hero_tagline_main' ) ?></h1>

@@ -36,6 +36,9 @@ require_once( 'library/offcanvas-walker.php' );
 /** Create widget areas in sidebar and footer */
 require_once( 'library/widget-areas.php' );
 
+/** Customized widgets */
+require_once( 'library/custom-widgets.php' );
+
 /** Return entry meta information for posts */
 require_once( 'library/entry-meta.php' );
 

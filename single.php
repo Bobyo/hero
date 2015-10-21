@@ -8,7 +8,19 @@
  */
 
 get_header(); ?>
-
+<?php
+$src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), array( 5600,1000 ), false, '' );
+?>
+<div class="le-hero has-background is-gray" style="background-image: url(<?php echo $src[0]; ?> )">
+    <header>
+        <div class="row valign-middle">
+            <div class="column large-8 medium-12 small-12 large-push-2">
+                <span class="single__catgname"><i class="fa icon-space fa-compass"></i><?php $categories = get_the_category(); foreach($categories as $category) { echo $category->name . ' - '; } ?></span>
+                <h2 class="entry-title"><?php the_title(); ?></h2>
+            </div>
+        </div>
+    </header>
+</div>
 <div class="row">
 	<div class="small-12 large-8 columns" role="main">
 
@@ -16,20 +28,8 @@ get_header(); ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
 		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<header>
-				<h1 class="entry-title"><?php the_title(); ?></h1>
-				<?php foundationpress_entry_meta(); ?>
-			</header>
 			<?php do_action( 'foundationpress_post_before_entry_content' ); ?>
-			<div class="entry-content">
-
-			<?php if ( has_post_thumbnail() ) : ?>
-				<div class="row">
-					<div class="column">
-						<?php the_post_thumbnail( '', array('class' => 'th') ); ?>
-					</div>
-				</div>
-			<?php endif; ?>
+			<div class="entry-content single-post-entry">
 
 			<?php the_content(); ?>
 			</div>

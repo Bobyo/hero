@@ -23,7 +23,7 @@ function hero_options($name, $default = false) {
 
 function hero_theme_customizer( $wp_customize ) {
     $wp_customize->add_section( 'hero_logo_section' , array(
-        'title'       => __( 'Logo', 'hero' ),
+        'title'       => __( 'Logo & Author Avatar', 'hero' ),
         'priority'    => 30,
         'description' => 'Upload a logo to replace the default site name and description in the header. If no image is uploaded, then the basic blog name will be used.',
         ) );
@@ -34,6 +34,14 @@ function hero_theme_customizer( $wp_customize ) {
         'label'    => __( 'Logo', 'hero' ),
         'section'  => 'hero_logo_section',
         'settings' => 'hero_logo',
+        ) ) );
+
+    $wp_customize->add_setting( 'hero_admin_avatar' );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_admin_avatar', array(
+        'label'    => __( 'Admin Rounded Avatar', 'hero' ),
+        'section'  => 'hero_logo_section',
+        'settings' => 'hero_admin_avatar',
         ) ) );
 }
 add_action( 'customize_register', 'hero_theme_customizer' );

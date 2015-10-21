@@ -15,6 +15,14 @@ figure {
 	padding: 0;
 }
 
+.icon-space {
+    margin-right: rem-calc(10);
+}
+
+.off-canvas-wrap {
+    -webkit-backface-visibility: visible;
+}
+
 // Add some basic styling for figcaption element
 figcaption {
 	margin-bottom: rem-calc(20);

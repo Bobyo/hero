@@ -1,0 +1,50 @@
+.le-hero {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    height: 600px;
+
+    header {
+        padding-top:rem-calc(120);
+        h2 {
+            color: $white;
+        }
+    }
+    .single__catgname {
+        color:$hero-accent;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom:rem-calc(20);
+        display: block;
+    }
+
+}
+
+.has-background {
+    z-index: 1;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+
+    &:after {
+        background-color: rgba(0,0,0,0.6);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+        content: '';
+    }
+
+}
+
+.post .single-post-entry {
+    margin-top: rem-calc(50);
+}
