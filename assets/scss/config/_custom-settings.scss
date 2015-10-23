@@ -94,6 +94,13 @@ $header-font-weight: 700;
 $paragraph-font-size: rem-calc(18);
 $paragraph-line-height: 1.8 !default;
 
+// Anchors
+$anchor-font-color: $hero-accent;
+
+// Tooltips
+$has-tip-border-bottom: none;
+$has-tip-border-bottom-hover: none;
+
 // Media query breakpoints
 $small-breakpoint:  em-calc(640);
 $medium-breakpoint: em-calc(1024);
