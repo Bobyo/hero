@@ -226,6 +226,12 @@
             @include single-transition;
             &:hover {
                 color:darken($hero-accent, 20%);
+                border:1px solid darken($hero-accent, 20%);
+                -webkit-transform: translate(0px, -5px);
+                -moz-transform: translate(0px, -5px);
+                -o-transform: translate(0px, -5px);
+                -ms-transform: translate(0px, -5px);
+                transform: translate(0px, -5px);
             }
         }
         i {
