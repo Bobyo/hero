@@ -52,7 +52,12 @@ figcaption {
    margin-right: auto;
    max-width: initial;
 }
-
+.ghost {
+    background-color:transparent;
+    border:2px solid $hero-base-lighter;
+    color:$hero-base-lighter;
+    font-weight: 700;
+}
 .valign-middle {
     display: table;
 

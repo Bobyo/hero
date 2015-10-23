@@ -4,6 +4,11 @@
 	margin: 0 auto;
 	border-top: 1px solid #ccc;
 	margin-top: rem-calc(60);
+    background-color:$hero-base-lighter;
+
+    h1 {
+        a {color:$white;}
+    }
 
 	#footer {
 		@include grid-row();
