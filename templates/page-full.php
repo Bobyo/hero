@@ -7,14 +7,16 @@ get_header(); ?>
 <?php get_template_part( 'parts/featured-image' ); ?>
 
 <div class="row">
-	<div class="small-12 large-12 columns" role="main">
+	<div class="small-12 large-8 large-push-2 columns" role="main">
 
 	<?php /* Start loop */ ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<header>
+			<?php if ( !has_post_thumbnail() ) : ?>
+            <header>
 				<h1 class="entry-title"><?php the_title(); ?></h1>
 			</header>
+            <?php endif; ?>
 			<div class="entry-content">
 				<?php the_content(); ?>
 			</div>

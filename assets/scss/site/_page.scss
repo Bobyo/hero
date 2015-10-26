@@ -1,0 +1,22 @@
+.page {
+    #featured-hero {
+        .columns {
+            height:rem-calc(400);
+        }
+        h1 {
+            color: $white;
+            text-align: center;
+        }
+    }
+
+    article.page {
+        h1 {
+            margin-top: rem-calc(50);
+        }
+    }
+
+    #sidebar {
+        margin-top: rem-calc(80);
+    }
+
+}

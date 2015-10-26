@@ -210,6 +210,14 @@
         }
     }
 
+    // Video Post
+    &.format-video {
+        iframe {
+            margin-bottom:rem-calc(-6);
+        }
+    }
+}
+
     // Social icons on the post footer
     .social {
         @include clearfix;
@@ -240,11 +248,3 @@
             font-size:rem-calc(15);
         }
     }
-
-    // Video Post
-    &.format-video {
-        iframe {
-            margin-bottom:rem-calc(-6);
-        }
-    }
-}
