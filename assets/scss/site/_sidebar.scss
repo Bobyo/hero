@@ -158,7 +158,10 @@
     }
 }
 
-// Latest tweets
+.sidebar-negative-margin {
+    position:relative;
+    top: - rem-calc(80);
+}
 
 .tooltip {
     margin-top: -35px;
