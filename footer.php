@@ -19,8 +19,8 @@
 		<?php do_action( 'foundationpress_after_footer' ); ?>
 	</footer>
 
-    <div class="row">
-        <div class="column large-2 medium-6 small-12">
+    <div class="row valign-middle" data-equalizer>
+        <div class="columns large-2 medium-6 small-12" data-equalizer-watch>
             <div class="footer-logo">
 
                 <?php if ( get_theme_mod( 'hero_logo' ) ) : ?>
@@ -33,13 +33,13 @@
 
             </div>
         </div>
-        <div class="column large-8 medium-6 small-12">
+        <div class="columns large-6 medium-6 small-12" data-equalizer-watch>
             <div class="footer-menu">
                 <?php foundationpress_top_bar_l(); ?>
                 <?php foundationpress_top_bar_r(); ?>
             </div>
         </div>
-        <div class="column large-2 medium-6 small-12">
+        <div class="columns large-4 medium-6 small-12" data-equalizer-watch>
             <div class="copyright">
                 <p>Copyright © 2015 <?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>. Skinned with <a href="http://creativecoon.com/hero">Hero</a>.
             </div>

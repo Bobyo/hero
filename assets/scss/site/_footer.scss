@@ -5,6 +5,21 @@
 	border-top: 1px solid #ccc;
 	margin-top: rem-calc(60);
     background-color:$hero-base-lighter;
+    color:$white;
+
+    h4 {
+        color:$white;
+        min-height: rem-calc(70);
+    }
+
+    a {
+        @include single-transition;
+        color:lighten($hero-accent, 10%);
+        font-weight: 700;
+        &:hover {
+            color:$hero-accent;
+        }
+    }
 
     h1 {
         a {color:$white;}
@@ -20,4 +35,65 @@
 			padding: 0;
 		}
 	}
+
+
+    // Footer menu
+    .top-bar-menu {
+        list-style-type: none;
+        margin:0;
+        padding:0;
+        li {
+            display: inline-block;
+            a {
+                color:$white;
+                font-weight: 700;
+                font-size: rem-calc(14);
+                padding-right: rem-calc(20);
+                @include single-transition;
+                &:hover {
+                    color:$hero-accent;
+                }
+            }
+            &:last-child {
+                a {
+                    padding:0;
+                }
+            }
+        }
+    }
+
+    // Copyright
+    .copyright {
+        p {
+            color:$white;
+            font-size: rem-calc(14);
+            font-weight: 700;
+            margin-bottom:0;
+            line-height: 1.9;
+        }
+    }
+
+    .widget_contact_info {
+        font-weight: 700;
+        .confit-hours, .confit-phone, .confit-address, .contact-map {
+            margin-bottom: rem-calc(15);
+        }
+    }
+
+    .widget-grofile  {
+        h4 {
+            margin:0;
+        }
+        text-align:center;
+        img {
+            width:155px;
+            border-radius:50%;
+        }
+        .grofile-meta {
+            p {
+                text-align:left;
+            }
+        }
+    }
+
 }

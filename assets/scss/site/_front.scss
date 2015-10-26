@@ -198,6 +198,7 @@
     // More link
     .more-link {
         padding:rem-calc(10);
+        margin-top: rem-calc(15);
         background-color:$hero-accent;
         color: $white;
         font-size: rem-calc(12);
@@ -213,6 +214,7 @@
     .social {
         @include clearfix;
         float:right;
+        margin-top: rem-calc(15);
         a {
             color:$hero-accent;
             border:1px solid $hero-accent;

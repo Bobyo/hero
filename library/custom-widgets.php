@@ -7,6 +7,7 @@
  * @since Hero 1.0.0
  */
 
+// Recent posts
 class Hero_WP_Widget_Recent_Posts extends WP_Widget {
 
     function __construct() {
@@ -294,65 +295,76 @@ class null_instagram_widget extends WP_Widget {
     }
 }
 
-// About me widget
-class about_me_wdg extends WP_Widget {
+/**
+ * Advanced Text widget class
+ */
+class hero_about_widget extends WP_Widget {
 
-    function __construct() {
-        parent::__construct(
-// Base ID of your widget
-            'about_me_wdg',
+  function __construct() {
+    parent::__construct(
+      'hero_about_widget',
+      __('About me widget special for showcasing your person on the site.'),
+      array( 'description' => __( 'You can have any kind of html/shrotcodes here.', 'hero' ), )
+    );
+  }
 
-// Widget name will appear in UI
-            __('WPBeginner Widget', 'wpb_widget_domain'),
+  function widget( $args, $instance ) {
+    extract($args);
+    $title = apply_filters( 'hero_about_widget', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
+    $text = apply_filters( 'hero_about_widget', empty( $instance['text'] ) ? '' : $instance['text'], $instance );
+    $class = apply_filters( 'hero_about_widget', empty( $instance['class'] ) ? '' : $instance['class'], $instance );
 
-// Widget description
-            array( 'description' => __( 'Sample widget based on WPBeginner Tutorial', 'wpb_widget_domain' ), )
-            );
-    }
+    echo $before_widget;
+    if ( !empty( $title ) ) { echo $before_title . $title . $after_title; } ?>
+      <div class="hero_about_widget <?php echo $class; ?>"><?php echo !empty( $instance['filter'] ) ? wpautop( $text ) : $text; ?></div>
+    <?php
+    echo $after_widget;
+  }
 
-// Creating widget front-end
-// This is where the action happens
-    public function widget( $args, $instance ) {
-        $title = apply_filters( 'widget_title', $instance['title'] );
-// before and after widget arguments are defined by themes
-        echo $args['before_widget'];
-        if ( ! empty( $title ) )
-            echo $args['before_title'] . $title . $args['after_title'];
+  function update( $new_instance, $old_instance ) {
+    $instance = $old_instance;
+    $instance['title'] = strip_tags($new_instance['title']);
+    $instance['class'] = strip_tags($new_instance['class']);
 
-// This is where you run the code and display the output
-        echo __( 'Hello, World!', 'wpb_widget_domain' );
-        echo $args['after_widget'];
-    }
+    if ( current_user_can('unfiltered_html') )
+      $instance['text'] =  $new_instance['text'];
+    else
+      $instance['text'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['text']) ) ); // wp_filter_post_kses() expects slashed
+    $instance['filter'] = isset($new_instance['filter']);
 
-// Widget Backend
-    public function form( $instance ) {
-        if ( isset( $instance[ 'title' ] ) ) {
-            $title = $instance[ 'title' ];
-        }
-        else {
-            $title = __( 'New title', 'wpb_widget_domain' );
-        }
-// Widget admin form
-        ?>
-        <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-        </p>
-        <?php
-    }
+    return $instance;
+  }
 
-// Updating widget replacing old instances with new
-    public function update( $new_instance, $old_instance ) {
-        $instance = array();
-        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-        return $instance;
-    }
-} // Class wpb_widget ends here
+  function form( $instance ) {
+    $instance = wp_parse_args( (array) $instance, array(
+        'title' => '',
+        'text' => '',
+        'class' => ''
+      )
+    );
+    $title = strip_tags($instance['title']);
+    $text = esc_textarea($instance['text']);
+    $class = esc_textarea($instance['class']);
+  ?>
+    <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+    <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
+
+    <p><label for="<?php echo $this->get_field_id('class'); ?>"><?php _e('Class:'); ?></label>
+    <input class="widefat" id="<?php echo $this->get_field_id('class'); ?>" name="<?php echo $this->get_field_name('class'); ?>" type="text" value="<?php echo esc_attr($class); ?>" /></p>
+
+    <textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>">
+        <?php echo $text; ?>
+    </textarea>
+
+    <p><input id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" type="checkbox" <?php checked(isset($instance['filter']) ? $instance['filter'] : 0); ?> />&nbsp;<label for="<?php echo $this->get_field_id('filter'); ?>"><?php _e('Automatically add paragraphs'); ?></label></p>
+  <?php
+  }
+}
 
 function hero_register_custom_widgets() {
     register_widget( 'Hero_WP_Widget_Recent_Posts' );
     register_widget( 'null_instagram_widget' );
-    register_widget( 'about_me_wdg' );
+    register_widget( 'hero_about_widget' );
 }
 add_action( 'widgets_init', 'hero_register_custom_widgets' );
 ?>
