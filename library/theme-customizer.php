@@ -124,37 +124,19 @@ function hero_theme_hidesidebar( $wp_customize ) {
     $wp_customize->add_setting('hero_options[hero_hide_sidebar]', array(
         'capability' => 'edit_theme_options',
         'type'       => 'option',
-        'default'       => '0', # Default checked
+        'std'       => '0', # Default checked
     ));
 
     $wp_customize->add_control('hero_options[hero_hide_sidebar]', array(
         'settings' => 'hero_options[hero_hide_sidebar]',
-        'label'    => __('Hide the sidebar', 'hero'),
+        'label'    => __('Hide the sidebar on the frontpage', 'hero'),
+        'description' => __('Enabling this will hide the sidebar on the homepage'),
         'section'  => 'title_tagline', # Layout Section
         'type'     => 'checkbox', # Type of control: checkbox
     ));
 
 }
 add_action( 'customize_register', 'hero_theme_hidesidebar' );
-
-// function hero_theme_bgColor ( $wp_customize ) {
-//     $wp_customize->add_section( 'hero_bgColor', array(
-//         'title'         => __( 'Hero overlay Background', 'hero' ),
-//         'priority'      => 40,
-//         'description'   => 'Set the background color for the hero that will act like a overlay',
-//     ) );
-
-//     $wp_customize->add_setting( 'hero_bg_color', array(
-//         'default' => '#999999'
-//         ) );
-
-//     $wp_customize->add_control( new WP_Customize_Color_Control ( $wp_customize, 'hero_bg_color', array(
-//         'label'    => __( 'Color', 'hero' ),
-//         'sections' => 'hero_bgColor',
-//         'settings' => 'hero_bg_color',
-//         ) ) );
-
-// }
 
 function hero_register_theme_customizer( $wp_customize ) {
 

@@ -42,7 +42,11 @@ get_header(); ?>
 </header>
 
 <div class="row">
-	<?php get_template_part( 'parts/check-if-sidebar-exist' ); ?>
+    <?php if(hero_options('hero_hide_sidebar') == '0') : ?>
+    	<?php get_template_part( 'parts/check-if-sidebar-exist' ); ?>
+    <?php else :
+        echo '<div class="small-12 large-8 large-push-2 columns" role="main">';
+    endif ?>
 
 	<?php if ( have_posts() ) : ?>
 

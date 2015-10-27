@@ -43,12 +43,12 @@ get_header(); ?>
 	<?php do_action( 'foundationpress_after_content' ); ?>
 
 	</div>
-    <?php if ( has_post_thumbnail() ) : ?>
-        <div class="sidebar-negative-margin">
-	       <?php get_sidebar(); ?>
-        </div>
-    <?php else : ?>
+        <?php if ( has_post_thumbnail() ) : ?>
+            <div class="sidebar-negative-margin">
+                <?php get_sidebar(); ?>
+            </div>
+        <?php else : ?>
             <?php get_sidebar(); ?>
-    <?php endif; ?>
+        <?php endif; ?>
 </div>
 <?php get_footer(); ?>

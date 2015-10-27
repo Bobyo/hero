@@ -6,7 +6,7 @@
 	margin-top: rem-calc(60);
     background-color:$hero-base-lighter;
     color:$white;
-
+    font-size: rem-calc(14);
     h4 {
         color:$white;
         min-height: rem-calc(70);
@@ -80,18 +80,30 @@
         }
     }
 
+    .widget_contact_info {
+        .contact-map {
+            width: 80%;
+        }
+    }
+
     .widget-grofile  {
         h4 {
             margin:0;
         }
-        text-align:center;
         img {
-            width:155px;
+            width:140px;
             border-radius:50%;
+            border:3px solid $white;
         }
         .grofile-meta {
+            h4 {
+                min-height: inherit;
+                padding:rem-calc(20) 0;
+            }
             p {
                 text-align:left;
+                font-size: rem-calc(14);
+                font-weight: 700;
             }
         }
     }
