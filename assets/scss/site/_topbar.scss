@@ -28,7 +28,9 @@
 	}
 
     .menu-item {
+
         a {
+            @include single-transition;
             text-shadow:1px 1px 0px rgba($black, 0.4);
             text-transform: uppercase;
             letter-spacing:1px;

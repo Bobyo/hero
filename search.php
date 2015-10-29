@@ -10,7 +10,7 @@
 get_header(); ?>
 
 <div class="row">
-	<div class="small-12 large-8 columns" role="main">
+	<div class="small-12 large-8 columns large-push-2" role="main">
 
 		<?php do_action( 'foundationpress_before_content' ); ?>
 
@@ -40,6 +40,5 @@ get_header(); ?>
 	<?php do_action( 'foundationpress_after_content' ); ?>
 
 	</div>
-	<?php get_sidebar(); ?>
 </div>
 <?php get_footer(); ?>

@@ -16,7 +16,7 @@
 
 get_header(); ?>
 
-<header id="front-hero" role="banner">
+<header id="front-hero" role="banner" class="le-hero">
     <div class="marketing hero-bg gray">
             <div class="row valign-middle setting-height">
                 <div class="columns text-center">

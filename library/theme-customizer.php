@@ -270,7 +270,7 @@ function twentythirteen_header_style() {
         if ( ! empty( $header_image ) ) :
     ?>
         #front-hero {
-            background: url(<?php header_image(); ?>) no-repeat scroll top;
+            background-image: url(<?php header_image(); ?>);
             background-size: cover;
         }
 
