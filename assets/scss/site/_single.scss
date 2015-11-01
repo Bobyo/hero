@@ -69,3 +69,9 @@
 .post .single-post-entry {
     margin-top: rem-calc(50);
 }
+
+.form-submit input {
+    @extend .button;
+    @extend .ghost;
+    border-radius:3px;
+}

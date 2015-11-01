@@ -13,6 +13,29 @@
 if ( have_comments() ) :
 	if ( (is_page() || is_single()) && ( ! is_home() && ! is_front_page()) ) :
 ?>
+<?php
+
+    // Are there comments to navigate through?
+    if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+    ?>
+    <nav class="navigation comment-navigation" role="navigation">
+        <h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'hero' ); ?></h2>
+        <div class="nav-links">
+            <?php
+                if ( $prev_link = get_previous_comments_link( __( 'Older Comments', 'hero' ) ) ) :
+                    printf( '<div class="nav-previous">%s</div>', $prev_link );
+                endif;
+
+                if ( $next_link = get_next_comments_link( __( 'Newer Comments', 'hero' ) ) ) :
+                    printf( '<div class="nav-next">%s</div>', $next_link );
+                endif;
+            ?>
+        </div><!-- .nav-links -->
+    </nav><!-- .comment-navigation -->
+    <?php
+    endif;
+
+?>
 	<section id="comments"><?php
 
 
@@ -40,6 +63,31 @@ if ( have_comments() ) :
 		?>
 
  	</section>
+
+<?php
+
+    // Are there comments to navigate through?
+    if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+    ?>
+    <nav class="navigation comment-navigation" role="navigation">
+        <h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'hero' ); ?></h2>
+        <div class="nav-links">
+            <?php
+                if ( $prev_link = get_previous_comments_link( __( 'Older Comments', 'hero' ) ) ) :
+                    printf( '<div class="nav-previous">%s</div>', $prev_link );
+                endif;
+
+                if ( $next_link = get_next_comments_link( __( 'Newer Comments', 'hero' ) ) ) :
+                    printf( '<div class="nav-next">%s</div>', $next_link );
+                endif;
+            ?>
+        </div><!-- .nav-links -->
+    </nav><!-- .comment-navigation -->
+    <?php
+    endif;
+
+?>
+
 <?php
 	endif;
 endif;
@@ -69,7 +117,10 @@ endif;
 if ( comments_open() ) :
 	if ( (is_page() || is_single()) && ( ! is_home() && ! is_front_page()) ) :
 ?>
-<section id="respond">
+
+<?php comment_form(); ?>
+
+<!-- <section id="respond">
 	<h3><?php comment_form_title( __( 'Leave a Reply', 'foundationpress' ), __( 'Leave a Reply to %s', 'foundationpress' ) ); ?></h3>
 	<p class="cancel-comment-reply"><?php cancel_comment_reply_link(); ?></p>
 	<?php if ( get_option( 'comment_registration' ) && ! is_user_logged_in() ) : ?>
@@ -117,7 +168,7 @@ if ( comments_open() ) :
 		<?php do_action( 'comment_form', $post->ID ); ?>
 	</form>
 	<?php endif; // If registration required and not logged in. ?>
-</section>
+</section> -->
 <?php
 	endif; // If you delete this the sky will fall on your head.
 	endif; // If you delete this the sky will fall on your head.

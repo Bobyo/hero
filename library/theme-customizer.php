@@ -130,7 +130,7 @@ function hero_theme_hidesidebar( $wp_customize ) {
     $wp_customize->add_control('hero_options[hero_hide_sidebar]', array(
         'settings' => 'hero_options[hero_hide_sidebar]',
         'label'    => __('Hide the sidebar on the frontpage', 'hero'),
-        'description' => __('Enabling this will hide the sidebar on the homepage'),
+        'description' => __('Enabling this will hide the sidebar on the homepage', 'hero'),
         'section'  => 'title_tagline', # Layout Section
         'type'     => 'checkbox', # Type of control: checkbox
     ));

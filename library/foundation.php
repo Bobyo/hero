@@ -162,7 +162,7 @@ class Foundationpress_Comments extends Walker_Comment{
                 <section id="comment-content-<?php comment_ID(); ?>" class="comment">
                     <?php if ( ! $comment->comment_approved ) : ?>
                     		<div class="notice">
-					<p class="bottom"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+					<p class="bottom"><?php _e( 'Your comment is awaiting moderation.', 'hero' ); ?></p>
 				</div>
                     <?php else : comment_text(); ?>
                     <?php endif; ?>

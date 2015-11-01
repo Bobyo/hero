@@ -104,5 +104,5 @@ a img.aligncenter {
     width: auto;
     z-index: 100000; /* Above WP toolbar. */
 }
-.gallery-caption {color:$white;}
-.bypostauthor {color:$white;}
+.gallery-caption { background-color:$oil; }
+.bypostauthor { color:$hero-base; }

@@ -11,8 +11,8 @@
 class Hero_WP_Widget_Recent_Posts extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_recent_entries', 'description' => __( "The most recent posts on your site HERO") );
-        parent::__construct('recent-posts', __('Recent Posts HERO'), $widget_ops);
+        $widget_ops = array('classname' => 'widget_recent_entries', 'description' => __( "The most recent posts on your site", 'hero') );
+        parent::__construct('recent-posts', __('Recent Posts: HERO', 'hero'), $widget_ops);
         $this->alt_option_name = 'widget_recent_entries';
 
         add_action( 'save_post', array($this, 'flush_widget_cache') );
@@ -37,7 +37,7 @@ class Hero_WP_Widget_Recent_Posts extends WP_Widget {
         ob_start();
         extract($args);
 
-        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' );
+        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts', 'Hero' );
         $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
         $number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 10;
         if ( ! $number )
@@ -109,14 +109,14 @@ class Hero_WP_Widget_Recent_Posts extends WP_Widget {
         $number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
         $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
 ?>
-        <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+        <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'hero' ); ?></label>
         <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
-        <p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
+        <p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'hero' ); ?></label>
         <input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
 
         <p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-        <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
+        <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?', 'hero' ); ?></label></p>
 <?php
     }
 }
@@ -277,12 +277,12 @@ class null_instagram_widget extends WP_Widget {
             }
             // do not set an empty transient - should help catch private or empty accounts
             if ( ! empty( $instagram ) ) {
-                $instagram = base64_encode( serialize( $instagram ) );
+                $instagram = serialize( $instagram );
                 set_transient( 'instagram-media-5-'.sanitize_title_with_dashes( $username ), $instagram, apply_filters( 'null_instagram_cache_time', HOUR_IN_SECONDS*2 ) );
             }
         }
         if ( ! empty( $instagram ) ) {
-            $instagram = unserialize( base64_decode( $instagram ) );
+            $instagram = unserialize( $instagram );
             return array_slice( $instagram, 0, $slice );
         } else {
             return new WP_Error( 'no_images', __( 'Instagram did not return any images.', 'wp-instagram-widget' ) );
@@ -295,76 +295,10 @@ class null_instagram_widget extends WP_Widget {
     }
 }
 
-/**
- * Advanced Text widget class
- */
-class hero_about_widget extends WP_Widget {
-
-  function __construct() {
-    parent::__construct(
-      'hero_about_widget',
-      __('About me widget special for showcasing your person on the site.'),
-      array( 'description' => __( 'You can have any kind of html/shrotcodes here.', 'hero' ), )
-    );
-  }
-
-  function widget( $args, $instance ) {
-    extract($args);
-    $title = apply_filters( 'hero_about_widget', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
-    $text = apply_filters( 'hero_about_widget', empty( $instance['text'] ) ? '' : $instance['text'], $instance );
-    $class = apply_filters( 'hero_about_widget', empty( $instance['class'] ) ? '' : $instance['class'], $instance );
-
-    echo $before_widget;
-    if ( !empty( $title ) ) { echo $before_title . $title . $after_title; } ?>
-      <div class="hero_about_widget <?php echo $class; ?>"><?php echo !empty( $instance['filter'] ) ? wpautop( $text ) : $text; ?></div>
-    <?php
-    echo $after_widget;
-  }
-
-  function update( $new_instance, $old_instance ) {
-    $instance = $old_instance;
-    $instance['title'] = strip_tags($new_instance['title']);
-    $instance['class'] = strip_tags($new_instance['class']);
-
-    if ( current_user_can('unfiltered_html') )
-      $instance['text'] =  $new_instance['text'];
-    else
-      $instance['text'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['text']) ) ); // wp_filter_post_kses() expects slashed
-    $instance['filter'] = isset($new_instance['filter']);
-
-    return $instance;
-  }
-
-  function form( $instance ) {
-    $instance = wp_parse_args( (array) $instance, array(
-        'title' => '',
-        'text' => '',
-        'class' => ''
-      )
-    );
-    $title = strip_tags($instance['title']);
-    $text = esc_textarea($instance['text']);
-    $class = esc_textarea($instance['class']);
-  ?>
-    <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-    <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
-
-    <p><label for="<?php echo $this->get_field_id('class'); ?>"><?php _e('Class:'); ?></label>
-    <input class="widefat" id="<?php echo $this->get_field_id('class'); ?>" name="<?php echo $this->get_field_name('class'); ?>" type="text" value="<?php echo esc_attr($class); ?>" /></p>
-
-    <textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>">
-        <?php echo $text; ?>
-    </textarea>
-
-    <p><input id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" type="checkbox" <?php checked(isset($instance['filter']) ? $instance['filter'] : 0); ?> />&nbsp;<label for="<?php echo $this->get_field_id('filter'); ?>"><?php _e('Automatically add paragraphs'); ?></label></p>
-  <?php
-  }
-}
 
 function hero_register_custom_widgets() {
     register_widget( 'Hero_WP_Widget_Recent_Posts' );
     register_widget( 'null_instagram_widget' );
-    register_widget( 'hero_about_widget' );
 }
 add_action( 'widgets_init', 'hero_register_custom_widgets' );
 ?>
