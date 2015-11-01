@@ -8,29 +8,25 @@ All contributions are welcome!
 
 ## Requirements
 
-**Please read this. It's totally worth it.**
+This project requires [NodeJS](http://nodejs.org) to be installed on your machine. Works with 0.10, 0.12, and 4.1! **Note that parts of our build process will break with NPM 3, due to the changes in how packages are installed.**
 
 FoundationPress uses [Sass](http://Sass-lang.com/) (CSS with superpowers). In short, Sass is a CSS pre-processor that allows you to write styles more effectively and tidy.
 
-All the Sass (.scss) files are compiled into one single css file. To make this happen, we use a tool called Grunt; a task runner that automates repetitive tasks like minification, compilation, linting, etc.
+The Sass is compiled using libsass, which requires the GCC to be installed on your machine. Windows users can install it through [MinGW](http://www.mingw.org/), and Mac users can install it through the [Xcode Command-line Tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/).
 
-**NOTE: You'll need to have [Node.js](http://nodejs.org) installed before continuing.**
+If you have not worked with a Sass-based workflow before, I would recommend reading [FoundationPress for beginners](https://foundationpress.olefredrik.com/posts/tutorials/foundationpress-for-beginners), a short blog post that explains what you need to know.
 
 ## Quickstart
 
-### 1. Clone the repository and install dependencies with npm
+### 1. Clone the repository and install with npm
 ```bash
 $ cd my-wordpress-folder/wp-content/themes/
-$ git clone git@github.com:olefredrik/FoundationPress.git
-$ mv FoundationPress your-theme-name
-$ cd your-theme-name
-
+$ git clone https://github.com/olefredrik/FoundationPress.git
+$ cd FoundationPress
 $ npm install
-# bower install && grunt build will be called via npm scripts when you run npm install.
 ```
 
-(Many project force their users to install [Bower](http://bower.io) and [Grunt](http://gruntjs.com/) globally. We don't like that and decided to use them via `npm scripts` which means, that Grunt and Bower are installed in your `node_modules` folder and we'll call them there.)
-
+(Many project force their users to install [Bower](http://bower.io) and [Grunt](http://gruntjs.com/) globally. We don't like that and decided to use them via `npm scripts` which means, that Grunt and Bower are installed in your `node_modules` folder and we'll call them there. Bower install and grunt build will be called via npm scripts when you run npm install.)
 
 
 ### 2. While you're working on your project, run:
@@ -48,7 +44,7 @@ $ npm run build
 ### 4. Compress all files required for deployment:
 It is not recommended that you deploy the entire theme folder to your webserver. There is no danger associated with doing this, but it is a waste of disk space and bandwidth. The node_modules and components for instance is only required during theme development.
 
-By executing the command below, you will compress only the files that are required for deployment. The file will be available as a .zip inside the folder named '/package'.
+By executing the command below, you will compress only the files that are required for deployment. The file will be available as a .zip inside the folder named '/packaged'.
 
 ```bash
 $ npm run package

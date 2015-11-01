@@ -100,7 +100,7 @@ module.exports = function (grunt) {
 					// Foundation core
 					'assets/components/foundation/js/foundation/foundation.js',
 
-					// Pick the componenets you need in your project
+					// Pick the components you need in your project
 					'assets/components/foundation/js/foundation/foundation.abide.js',
 					'assets/components/foundation/js/foundation/foundation.accordion.js',
 					'assets/components/foundation/js/foundation/foundation.alert.js',
@@ -123,7 +123,7 @@ module.exports = function (grunt) {
 
 				],
 
-				// Finally, concatinate all the files above into one single file
+				// Finally, concatenate all the files above into one single file
 				dest: 'assets/javascript/foundation.js'
 
 			}
@@ -167,7 +167,24 @@ module.exports = function (grunt) {
 				}
 			}
 
-		}
+		},
+
+		browserSync: {
+            dev: {
+                bsFiles: {
+                    src : [
+                        'assets/stylesheets/*.css',
+                        '**/*.php',
+                        'assets/javascript/**/*.js'
+                    ]
+                },
+                options: {
+                    watchTask: true,
+                    // fill in proxy address of local WP server
+                    proxy: ""
+                }
+            }
+        }
 	});
 
 	grunt.loadNpmTasks('grunt-sass');
@@ -176,9 +193,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-string-replace');
-  grunt.loadNpmTasks('grunt-contrib-compress');
+	grunt.loadNpmTasks('grunt-contrib-compress');
+	grunt.loadNpmTasks('grunt-browser-sync');
 
 	grunt.registerTask('package', ['compress:main']);
 	grunt.registerTask('build', ['copy', 'string-replace:fontawesome', 'sass', 'concat', 'uglify']);
+	grunt.registerTask('browser-sync', ['browserSync', 'watch']);
 	grunt.registerTask('default', ['watch']);
 };
