@@ -54,18 +54,18 @@ class Hero_WP_Widget_Recent_Posts extends WP_Widget {
             <div class="post-entry">
                 <div class="row">
                 <?php if ( has_post_thumbnail() ) : ?>
-                    <div class="column small-12 large-3"><a class='image-thumbnail' href="<?php the_permalink() ?>"><?php the_post_thumbnail( array(50, 50) ) ?></a></div>
+                    <div class="column small-3 large-3"><a class='image-thumbnail' href="<?php the_permalink() ?>"><?php the_post_thumbnail( array(50, 50) ) ?></a></div>
                 <?php endif; ?>
 
                 <?php if ( has_post_format( 'video' ) ) :
-                    echo "<div class='column small-12 large-3 text-center'><i class='fa fa-video-camera'></i></div>";
+                    echo "<div class='column small-3 large-3 text-center'><i class='fa fa-video-camera'></i></div>";
                 elseif ( has_post_format( 'image' ) ) :
                     echo "";
                 else :
-                    echo "<div class='column small-12 large-3 text-center'><i class='fa fa-thumb-tack'></i></div>";
+                    echo "<div class='column small-3 large-3 text-center'><i class='fa fa-thumb-tack'></i></div>";
                 endif; ?>
 
-                <div class="column small-12 large-9">
+                <div class="column small-9 large-9">
                 <a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ? get_the_title() : get_the_ID() ); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a>
             <?php if ( $show_date ) : ?>
                 <span class="post-date"><?php echo get_the_date(); ?></span>

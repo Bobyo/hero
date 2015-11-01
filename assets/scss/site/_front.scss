@@ -11,6 +11,9 @@
 
     .setting-height {
         height:rem-calc(500);
+        @media #{$small-only} {
+            height: rem-calc(350);
+        }
     }
 
     .hero-thumb img {
@@ -67,20 +70,13 @@
 
 		h1 a, h4 { color: #fff; }
 
-		.fpmock img {
-			@media screen and (max-width: 870px) {
-				display: none;
-			}
-
-			position: absolute;
-			top:rem-calc(21);
-		}
-
-		.download { margin-top: rem-calc(30); }
+        @media #{$small-only} {
+            margin-bottom: rem-calc(20);
+        }
 
 	}
 
-.post {
+.post, .page {
     $post-header-bg:lighten($oil, 10%);
     $meta-line-height:1.8;
     %back-slash {
@@ -163,29 +159,29 @@
         a {
             background-color:$hero-accent;
             display: inline-block;
-            padding:rem-calc(5) 0;
+            padding:rem-calc(5);
             text-transform: uppercase;
             font-size:rem-calc(12);
             font-weight: 700;
             color:$white;
-            &:before {
-                content: '';
-                width: 0;
-                height: 0;
-                border-top: 10px solid transparent;
-                border-left: 10px solid $post-header-bg;
-                border-bottom: 10px solid transparent;
-                margin: 0 10px 0 0;
-            }
-            &:after {
-                content:'';
-                width: 0;
-                height: 0;
-                margin: 0 0 0 10px;
-                border-top: 10px solid transparent;
-                border-right: 10px solid $post-header-bg;
-                border-bottom: 10px solid transparent;
-            }
+            // &:before {
+            //     content: '';
+            //     width: 0;
+            //     height: 0;
+            //     border-top: 10px solid transparent;
+            //     border-left: 10px solid $post-header-bg;
+            //     border-bottom: 10px solid transparent;
+            //     margin: 0 10px 0 0;
+            // }
+            // &:after {
+            //     content:'';
+            //     width: 0;
+            //     height: 0;
+            //     margin: 0 0 0 9px;
+            //     border-top: 10px solid transparent;
+            //     border-right: 10px solid $post-header-bg;
+            //     border-bottom: 10px solid transparent;
+            // }
         }
         text-align:center;
         margin-top: rem-calc(10);
