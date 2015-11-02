@@ -24,6 +24,9 @@ function foundationpress_theme_support() {
 	// RSS thingy
 	add_theme_support( 'automatic-feed-links' );
 
+    // Custom backgrounds
+    add_theme_support( 'custom-background' );
+
 	// Add post formarts support: http://codex.wordpress.org/Post_Formats
 	add_theme_support( 'post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat') );
 
@@ -33,4 +36,14 @@ function foundationpress_theme_support() {
 
 add_action( 'after_setup_theme', 'foundationpress_theme_support' );
 endif;
+
+if ( ! isset( $content_width ) ) {
+    $content_width = 600;
+}
+
+function herosense_editor_styles() {
+    add_editor_style( 'custom-editor-style.css' );
+}
+add_action( 'admin_init', 'herosense_editor_styles' );
+
 ?>

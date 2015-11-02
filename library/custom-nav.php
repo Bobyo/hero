@@ -7,6 +7,8 @@
  * @since FoundationPress 1.0.0
  */
 
+require_once( 'sanitization-callbacks.php' );
+
 if ( ! function_exists( 'wpt_register_theme_customizer' ) ) :
 function wpt_register_theme_customizer( $wp_customize ) {
 	// Create custom panels
@@ -36,6 +38,7 @@ function wpt_register_theme_customizer( $wp_customize ) {
 		'wpt_mobile_menu_layout',
 		array(
 			'default'	=> __( 'offcanvas', 'foundationpress' ),
+            'sanitize_callback' => 'herosense_sanitize_checkbox',
 		)
 	);
 
@@ -44,6 +47,7 @@ function wpt_register_theme_customizer( $wp_customize ) {
 		'wpt_mobile_menu_position',
 		array(
 			'default'	=> __( 'left', 'foundationpress' ),
+            'sanitize_callback' => 'herosense_sanitize_checkbox',
 		)
 	);
 

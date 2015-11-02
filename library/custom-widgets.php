@@ -140,7 +140,7 @@ class null_instagram_widget extends WP_Widget {
         parent::__construct(
             'null-instagram-feed',
             __( 'Instagram', 'wp-instagram-widget' ),
-            array( 'classname' => 'null-instagram-feed', 'description' => __( 'Displays your latest Instagram photos', 'wp-instagram-widget' ) )
+            array( 'classname' => 'null-instagram-feed', 'description' => __( 'Displays your latest Instagram photos', 'herosense' ) )
         );
     }
     function widget( $args, $instance ) {
@@ -171,7 +171,7 @@ class null_instagram_widget extends WP_Widget {
                 foreach ( $media_array as $item ) {
                     // copy the else line into a new file (parts/wp-instagram-widget.php) within your theme and customise accordingly
                     if ( locate_template( 'parts/wp-instagram-widget.php' ) != '' ) {
-                        include locate_template( 'parts/wp-instagram-widget.php' );
+                        get_template_part( 'parts/wp-instagram-widget.php' );
                     } else {
                         echo '<li class="'. $liclass .'"><a href="'. esc_url( $item['link'] ) .'" target="'. esc_attr( $target ) .'"  class="'. $aclass .'"><img src="'. esc_url( $item[$size] ) .'"  alt="'. esc_attr( $item['description'] ) .'" title="'. esc_attr( $item['description'] ).'"  class="'. $imgclass .'"/></a></li>';
                     }

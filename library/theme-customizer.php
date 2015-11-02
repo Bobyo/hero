@@ -11,6 +11,9 @@
 * Returns the options array for Hero
 * @since Hero 1.1.0
 */
+
+require_once( 'sanitization-callbacks.php' );
+
 function hero_options($name, $default = false) {
     $options = ( get_option( 'hero_options' ) ) ? get_option( 'hero_options' ) : null;
     // return the option if it exists
@@ -28,7 +31,9 @@ function hero_theme_customizer( $wp_customize ) {
         'description' => 'Upload a logo to replace the default site name and description in the header. If no image is uploaded, then the basic blog name will be used.',
         ) );
 
-    $wp_customize->add_setting( 'hero_logo' );
+    $wp_customize->add_setting( 'hero_logo', array(
+        'sanitize_callback' => 'herosense_sanitize_image',
+    ) );
 
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_logo', array(
         'label'    => __( 'Logo', 'hero' ),
@@ -36,7 +41,9 @@ function hero_theme_customizer( $wp_customize ) {
         'settings' => 'hero_logo',
         ) ) );
 
-    $wp_customize->add_setting( 'hero_admin_avatar' );
+    $wp_customize->add_setting( 'hero_admin_avatar', array(
+        'sanitize_callback' => 'herosense_sanitize_image',
+    ) );
 
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_admin_avatar', array(
         'label'    => __( 'Admin Rounded Avatar', 'hero' ),
@@ -48,7 +55,9 @@ add_action( 'customize_register', 'hero_theme_customizer' );
 
 function hero_theme_maintitle( $wp_customize ) {
 
-    $wp_customize->add_setting( 'hero_tagline_main' );
+    $wp_customize->add_setting( 'hero_tagline_main', array (
+        'sanitize_callback' => 'herosense_sanitize_html',
+        ) );
 
     $wp_customize->add_control(
         new WP_Customize_Control(
@@ -66,7 +75,7 @@ function hero_theme_maintitle( $wp_customize ) {
 }
 add_action( 'customize_register', 'hero_theme_maintitle' );
 
-function hero_theme_social( $wp_customize ) {
+function herosense_theme_social( $wp_customize ) {
 
     $wp_customize->add_section( 'hero_social_section' , array(
         'title'       => __( 'Social', 'hero' ),
@@ -78,11 +87,12 @@ function hero_theme_social( $wp_customize ) {
         'capability' => 'edit_theme_options',
         'type'       => 'option',
         'default'    => '0', # Default un-checked
+        'sanitize_callback' => 'herosense_sanitize_checkbox',
         ));
 
     $wp_customize->add_control('hero_options[hide_social]', array(
         'settings' => 'hero_options[hide_social]',
-        'label'    => __('Hide the social links in the hero area', 'narga'),
+        'label'    => __('Hide the social links in the hero area', 'herosense'),
         'section'  => 'hero_social_section',
         'type'     => 'checkbox', # Type of control: checkbox
     ));
@@ -93,6 +103,7 @@ function hero_theme_social( $wp_customize ) {
         'capability' => 'edit_theme_options',
         'type'       => 'option',
         'default'    => 'your-username', # Default custom text
+        'sanitize_callback' => 'herosense_sanitize_checkbox',
     ));
 
     $wp_customize->add_control('hero_options[twitter]', array(
@@ -106,6 +117,7 @@ function hero_theme_social( $wp_customize ) {
         'capability' => 'edit_theme_options',
         'type'       => 'option',
         'default'    => 'your-username', # Default custom text
+        'sanitize_callback' => 'herosense_sanitize_checkbox',
     ));
 
     $wp_customize->add_control('hero_options[facebook]', array(
@@ -116,7 +128,7 @@ function hero_theme_social( $wp_customize ) {
 
 
 }
-add_action( 'customize_register', 'hero_theme_social' );
+add_action( 'customize_register', 'herosense_theme_social' );
 
 
 function hero_theme_hidesidebar( $wp_customize ) {
@@ -125,6 +137,7 @@ function hero_theme_hidesidebar( $wp_customize ) {
         'capability' => 'edit_theme_options',
         'type'       => 'option',
         'std'       => '0', # Default checked
+        'sanitize_callback' => 'herosense_sanitize_checkbox',
     ));
 
     $wp_customize->add_control('hero_options[hero_hide_sidebar]', array(
@@ -143,7 +156,8 @@ function hero_register_theme_customizer( $wp_customize ) {
     $wp_customize->add_setting(
         'hero_head_overlayBg',
         array(
-            'default'     => '#000000'
+            'default'     => '#000000',
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
         )
     );
 
@@ -152,7 +166,7 @@ function hero_register_theme_customizer( $wp_customize ) {
             $wp_customize,
             'link_color',
             array(
-                'label'      => __( 'Head overlay color', 'tcx' ),
+                'label'      => __( 'Head overlay color', 'herosense' ),
                 'section'    => 'colors',
                 'settings'   => 'hero_head_overlayBg'
             )
@@ -215,7 +229,7 @@ function header_BgColor() {
 }
 add_action( 'wp_head', 'header_BgColor' );
 
-function twentythirteen_custom_header_setup() {
+function herosense_custom_header_setup() {
     $args = array(
         // Text color and image (empty to use none).
         'default-text-color'     => '220e10',
@@ -226,7 +240,7 @@ function twentythirteen_custom_header_setup() {
         'width'                  => 1600,
 
         // Callbacks for styling the header and the admin preview.
-        'wp-head-callback'       => 'twentythirteen_header_style',
+        'wp-head-callback'       => 'herosense_header_style',
     );
 
     add_theme_support( 'custom-header', $args );
@@ -239,23 +253,23 @@ function twentythirteen_custom_header_setup() {
         'stars' => array(
             'url'           => '%s/assets/images/headers/stars.jpeg',
             'thumbnail_url' => '%s/assets/images/headers/stars-thumbnail.jpg',
-            'description'   => _x( 'Stars', 'header image description', 'twentythirteen' )
+            'description'   => _x( 'Stars', 'header image description', 'herosense' )
         ),
         'woods' => array(
             'url'           => '%s/assets/images/headers/woods.jpeg',
             'thumbnail_url' => '%s/assets/images/headers/woods-thumbnail.jpg',
-            'description'   => _x( 'Woods', 'header image description', 'twentythirteen' )
+            'description'   => _x( 'Woods', 'header image description', 'herosense' )
         ),
         'gazing' => array(
             'url'           => '%s/assets/images/headers/gazing.jpeg',
             'thumbnail_url' => '%s/assets/images/headers/gazing-thumbnail.jpg',
-            'description'   => _x( 'Gazing', 'header image description', 'twentythirteen' )
+            'description'   => _x( 'Gazing', 'header image description', 'herosense' )
         ),
     ) );
 }
-add_action( 'after_setup_theme', 'twentythirteen_custom_header_setup', 11 );
+add_action( 'after_setup_theme', 'herosense_custom_header_setup', 11 );
 
-function twentythirteen_header_style() {
+function herosense_header_style() {
     $header_image = get_header_image();
     $text_color   = get_header_textcolor();
 

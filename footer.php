@@ -41,7 +41,7 @@
         </div>
         <div class="columns large-4 medium-6 small-12" data-equalizer-watch>
             <div class="copyright">
-                <p>Copyright © 2015 <?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>. Skinned with <a href="http://creativecoon.com/hero">Hero</a>.
+                <p>Copyright &copy; 2015 <?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>. Skinned with <a href="http://creativecoon.com/hero">Hero</a>.
             </div>
         </div>
 
