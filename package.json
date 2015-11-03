@@ -1,25 +1,25 @@
 {
- "name": "foundationpress",
- "title": "FoundationPress",
+ "name": "herosense",
+ "title": "Herosense",
  "version": "1.5.1",
- "description": "FoundationPress is a WordPress starter theme based on Foundation 5 by Zurb",
+ "description": "Herosense is a WordPress blog/magazine style theme based on Foundation 5 by Zurb",
  "keywords": [
    "FoundationPress",
    "WordPress",
-   "starter theme",
-   "Foundation",
+   "blog theme",
+   "Magazine theme",
    "semantic",
    "mobile first",
    "customizable",
    "responsive"
  ],
- "homepage": "http://foundationpress.olefredrik.com/",
- "bugs": "https://github.com/olefredrik/FoundationPress/issues",
+ "homepage": "http://creativecoon.com/hero",
+ "bugs": "https://github.com/Bobyo/hero/issues",
  "license": "MIT",
  "main": "Gruntfile.js",
  "repository": {
    "type": "git",
-   "url": "https://github.com/olefredrik/FoundationPress.git"
+   "url": "https://github.com/Bobyo/hero.git"
  },
  "devDependencies": {
    "bower": "~1.6.4",
