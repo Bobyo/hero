@@ -1,6 +1,14 @@
 .page {
     header {
-        background: none;
+        background-color:transparent;
+    }
+    .search & {
+        header {
+            background-color:lighten($oil, 10%);
+            h2 {
+                text-align:center;
+            }
+        }
     }
     #featured-hero {
         .columns {
