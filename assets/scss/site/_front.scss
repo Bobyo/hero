@@ -79,6 +79,15 @@
 .post, .page {
     $post-header-bg:lighten($oil, 10%);
     $meta-line-height:1.8;
+
+    &.sticky {
+        .entry-content {
+            background-color: lighten($hero-base-lightest, 10%);
+            padding:20px;
+            margin-top:0;
+        }
+    }
+
     %back-slash {
         &:after {
             content: "/";
@@ -94,6 +103,11 @@
     header {
         background-color:$post-header-bg;
         padding:rem-calc(15);
+        h2 {
+            text-align:center;
+            margin: rem-calc(20) 0;
+            font-size: rem-calc(18);
+        }
     }
     .header__container {
         &--addborder {
@@ -144,9 +158,8 @@
         }
     }
     h2 {
-        margin: rem-calc(20) 0;
-        font-size: rem-calc(18);
-        text-align: center;
+
+        text-align: left;
         a {
             color: $white;
             @include single-transition;

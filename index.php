@@ -53,12 +53,11 @@ get_header(); ?>
 		<?php do_action( 'foundationpress_before_content' ); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
-            <?php if ( has_post_format( 'image' )) {
+            <?php
                 if ( has_post_thumbnail() ) {
                     the_post_thumbnail();
-                    echo '<a class="hide playbutton" href="' . esc_url( get_permalink() ) . '"><i class="fa fa-play "></i></a>';
                 }
-        } ?>
+            ?>
 
 			<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; ?>
