@@ -60,9 +60,16 @@ class Hero_WP_Widget_Recent_Posts extends WP_Widget {
                 <?php if ( has_post_format( 'video' ) ) :
                     echo "<div class='column small-3 large-3 text-center'><i class='fa fa-video-camera'></i></div>";
                 elseif ( has_post_format( 'image' ) ) :
+                    if ( !has_post_thumbnail() ) {
+                        echo "<div class='column small-3 large-3 text-center'><i class='fa fa-picture-o'></i></div>";
+                    }
                     echo "";
-                else :
+                elseif ( has_post_thumbnail() ) :
+                    // NOthing
+                elseif ( is_sticky() ) :
                     echo "<div class='column small-3 large-3 text-center'><i class='fa fa-thumb-tack'></i></div>";
+                else :
+                    echo "<div class='column small-3 large-3 text-center'><i class='fa fa-clipboard'></i></div>";
                 endif; ?>
 
                 <div class="column small-9 large-9">
